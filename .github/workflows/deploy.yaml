@@ -1,0 +1,33 @@
+on:
+  push:
+    branches:
+      - main
+
+name: Deploy to cPanel
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
+
+      - name: Composer Setup
+        run: |
+          composer install
+
+      - name: 📂 Sync files
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.HOST }}
+          username: ${{ secrets.USER }}
+          password: ${{ secrets.SECRET }}
+          local-dir: ./
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/.env*
+            **/LICENCE*
