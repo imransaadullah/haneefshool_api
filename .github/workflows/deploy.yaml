@@ -26,6 +26,7 @@ jobs:
           username: ${{ secrets.USER }}
           password: ${{ secrets.SECRET }}
           local-dir: ./
+          timeout: 12000
           exclude: |
             **/.git*
             **/.git*/**
