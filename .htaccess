@@ -1,0 +1,5 @@
+Options -MultiViews
+RewriteEngine On
+
+# Route requests to the API if they start with /api
+RewriteRule ^ index.php [L]
