@@ -16,10 +16,12 @@ $env->safeLoad();
 $app = new App();
 
 try {
-    $pdo = new \PDO($_ENV['DB_HOST_APP_LOCAL'],$_ENV['DB_USER_APP_LOCAL'],$_ENV['DB_PASS_APP_LOCAL']);
+    $pdo = new \PDO($_ENV['DB_HOST'],$_ENV['DB_USER'],$_ENV['DB_PASS']);
     $pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 } catch (\PDOException $e) {
-    (new Response())->setErrorResponse("Database Connection Error: " .$e->getMessage())->send();
+    (new Response())
+    // ->setJsonResponse($_ENV)->send();
+    ->setErrorResponse("Database Connection Error: " .$e->getMessage())->send();
 }
 
 // Landing Page Routes
