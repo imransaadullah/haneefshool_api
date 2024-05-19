@@ -38,7 +38,7 @@ class Landing
                         (new FieldDefinition("id"))->integer()->unsigned()->autoIncrement()->primaryKey()->comment("Unique Auto-generated id for users"),
                         (new FieldDefinition("name"))->varchar()->length(100)->notNull()->comment("Full name"),
                         (new FieldDefinition("email"))->email()->notNull()->unique()->comment("user email address"),
-                        (new FieldDefinition("message"))->text()->length(5000)->notNull()->unique()->comment("Contact Message"),
+                        (new FieldDefinition("message"))->text()->length(5000)->notNull()->comment("Contact Message"),
                         (new FieldDefinition("phone"))->varchar()->length(15)->comment("phone number"),
                         (new FieldDefinition("status"))->tinyInt()->length(2)->notNull()->default(0)->comment("Account Status: 0 -> inactive, 1 -> Active"),
                         (new FieldDefinition("date_submitted"))->utcDatetime()->currentTimestamp()->comment("Account Creation date"),
@@ -48,12 +48,20 @@ class Landing
             )->execute();
     }
 
-    public function insertContactUsForm($data){
+    public function insertContactUsForm($data)
+    {
         return $this->secureSQLGenerator->insert('contact-us', $data)->execute();
     }
 
 
-    public function setup(array $data)
+    /**
+     * This method is used to setup the necessary database tables for the landing page.
+     * @return array An array containing the result of the createContactUsTable method.
+     * @throws \Exception If any error occurs during the database operations.
+     * @since 1.0.0
+     */
+
+    public function setup()
     {
         return [$this->createContactUsTable()];
     }

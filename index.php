@@ -39,9 +39,9 @@ $app->post('/', function(){
 
 (new Routes($app, $pdo))
     ->set_routes([
-        ['url' =>'/setup', 'method'=> 'get'],
-        ['url'=> '/contact_us', 'method'=> 'post'],
-        ['url'=> '/demo-request-doc', 'method'=> 'get'],
+        ['url' =>'/setup', 'methods'=> ['get']],
+        ['url'=> '/contact_us', 'methods'=> ['post']],
+        // ['url'=> '/demo-request-doc', 'methods'=> ['get']],
     ])->load_routes();
 
 

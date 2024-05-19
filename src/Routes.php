@@ -142,6 +142,7 @@ class Routes
                     $method = StringMethods::replaceString($route['url'], $this->route_dimiter, $this->method_dimiter);
                     $handler = [$this, StringMethods::replaceString($method, '/', '')];
                     if (is_callable($handler)) {
+                        // (new Response())->setJsonResponse([$handler, $method])->send();
                         $this->app->$methodName($route['url'], $handler);
                     } else {
                         (new Response())->setErrorResponse('Undefined Handler for ' . $route['url'] . '.')->send();
