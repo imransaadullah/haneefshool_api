@@ -40,7 +40,7 @@ $app->post('/', function(){
 (new Routes($app, $pdo))
     ->set_routes([
         ['url' =>'/setup', 'methods'=> ['get']],
-        ['url'=> '/contact_us', 'methods'=> ['post']],
+        ['url'=> '/contact-us', 'methods'=> ['post']],
         // ['url'=> '/demo-request-doc', 'methods'=> ['get']],
     ])->load_routes();
 
