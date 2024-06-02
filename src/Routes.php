@@ -5,6 +5,7 @@ namespace API;
 use FASTAPI\Response;
 use FASTAPI\StringMethods;
 use API\Mailer;
+use API\Models;
 
 class Routes 
 {
@@ -29,7 +30,7 @@ class Routes
     public function setup(\FASTAPI\Request $request)
     {
         (new Response())->setJsonResponse([
-            'error' => ['Landing Page Setup' => (new Landing($this->db_driver))->setup()]
+            'error' => ['Landing Page Setup' => (new Models($this->db_driver))->setup()]
         ])->send();
     }
 
