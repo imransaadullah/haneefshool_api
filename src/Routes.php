@@ -81,18 +81,19 @@ class Routes
     public function contact_us(\FASTAPI\Request $request)
     {
         $response = new Response();
+        $models = new Models($this->db_driver);
         $data = $request->getData();
-        $response->setJsonResponse(['success' => 0, 'message' => 'Welcome', 'data' => $data]);
-        // $insertOperation = (new ContactUsModel($this->db_driver, 'demo-requests'))->insertData($data);
-        // if(is_array($insertOperation)){
-        //     $message = "These feild(s) (". implode(", ", $insertOperation) .") are mandatory. kindly check " . $request->getMethod() . "-doc" ;
-        //     $response->setJsonResponse(['error' => 1,'message'=> $message], 428);
-        // }elseif($insertOperation){
-        //     Mailer::sendmail('New Demo Request',$data['message'], $data['email'], $data['full_name'], true);
-        //     $response->setJsonResponse(['error'=> 0,'message'=> 'Demo Request Submitted Successfully']);
-        // }else{
-        //     $response->setJsonResponse(['error'=> 0,'message'=> 'Unable To Submit Demo-Request, Kindly Call Customer Representative Number.'], 400);
-        // }
+        // $response->setJsonResponse(['success' => 0, 'message' => 'Welcome', 'data' => $data]);
+        $insertOperation = $models->insertContactUsForm($data);
+        if(is_array($insertOperation)){
+            $message = "These feild(s) (". implode(", ", $insertOperation) .") are mandatory. kindly check " . $request->getMethod() . "-doc" ;
+            $response->setJsonResponse(['error' => 1,'message'=> $message], 428);
+        }elseif($insertOperation){
+            Mailer::sendmail('New Message From Contact Form',$data['message'], $data['email'], $data['full_name'], true);
+            $response->setJsonResponse(['error'=> 0,'message'=> 'Demo Request Submitted Successfully']);
+        }else{
+            $response->setJsonResponse(['error'=> 0,'message'=> 'Unable To Submit Demo-Request, Kindly Call Customer Representative Number.'], 400);
+        }
 
         $response->send();
     }

@@ -6,7 +6,7 @@ use FASTSQL\SecureSQLGenerator;
 use FASTSQL\FieldDefinition;
 use FASTSQL\TableManipulator;
 
-class Landing
+class Models
 {
     private $secureSQLGenerator;
     private $pdo;
