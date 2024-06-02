@@ -30,7 +30,7 @@ class Routes
     public function setup(\FASTAPI\Request $request)
     {
         (new Response())->setJsonResponse([
-            'error' => ['Landing Page Setup' => (new Models($this->db_driver))->setup()]
+            // 'error' => ['Landing Page Setup' => (new Models($this->db_driver))->setup()]
         ])->send();
     }
 
