@@ -30,9 +30,8 @@ class Models
 
     public function createContactUsTable(): bool
     {
-        return 
-        // $this->secureSQLGenerator
-        //     ->setQuery(
+        return $this->secureSQLGenerator
+            ->setQuery(
                 (new TableManipulator('contact-us'))
                     ->ifNotExists()
                     ->addFields([
@@ -45,15 +44,14 @@ class Models
                         (new FieldDefinition("date_submitted"))->utcDatetime()->currentTimestamp()->comment("Account Creation date"),
                         (new FieldDefinition("date_read"))->utcDatetime()->comment("Last Update Date date"),
                     ])
-                    ->getCreateTableStatement();
-            // )->execute();
+                    ->getCreateTableStatement()
+            )->execute();
     }
 
     public function createHAJTable(): bool
     {
-        return 
-        // $this->secureSQLGenerator
-        //     ->setQuery(
+        return $this->secureSQLGenerator
+            ->setQuery(
                 (new TableManipulator('hajRegistration'))
                     ->ifNotExists()
                     ->addFields([
@@ -100,15 +98,14 @@ class Models
                         (new FieldDefinition("doctorAddress"))->varchar()->length(500)->comment("doctor current address"),
                         (new FieldDefinition("doctorPhoneNumber"))->varchar()->length(15)->comment("doctor phone number"),
                     ])
-                    ->getCreateTableStatement();
-            // )->execute();
+                    ->getCreateTableStatement()
+            )->execute();
     }
 
     public function createHMJTable(): bool
     {
-        return 
-        // $this->secureSQLGenerator
-            // ->setQuery(
+        return $this->secureSQLGenerator
+            ->setQuery(
                 (new TableManipulator('hmjRegistration'))
                     ->ifNotExists()
                     ->addFields([
@@ -156,15 +153,14 @@ class Models
                         (new FieldDefinition("doctorPhoneNumber"))->varchar()->length(15)->comment("doctor phone number"),
                         
                     ])
-                    ->getCreateTableStatement();
-            // )->execute();
+                    ->getCreateTableStatement()
+            )->execute();
     }
 
     public function createHHSTable(): bool
     {
-        return 
-        // $this->secureSQLGenerator
-        //     ->setQuery(
+        return $this->secureSQLGenerator
+            ->setQuery(
                 (new TableManipulator('hhsRegistration'))
                     ->ifNotExists()
                     ->addFields([
@@ -212,15 +208,14 @@ class Models
                         (new FieldDefinition("doctorPhoneNumber"))->varchar()->length(15)->comment("doctor phone number"),
                         
                     ])
-                    ->getCreateTableStatement();
-            // )->execute();
+                    ->getCreateTableStatement()
+            )->execute();
     }
 
     public function createHMCTable(): bool
     {
-        return 
-        // $this->secureSQLGenerator
-        //     ->setQuery(
+        return $this->secureSQLGenerator
+            ->setQuery(
                 (new TableManipulator('hmcRegistration'))
                     ->ifNotExists()
                     ->addFields([
@@ -268,8 +263,8 @@ class Models
                         (new FieldDefinition("doctorPhoneNumber"))->varchar()->length(15)->comment("doctor phone number"),
                         
                     ])
-                    ->getCreateTableStatement();
-            // )->execute();
+                    ->getCreateTableStatement()
+            )->execute();
     }
 
     public function insertContactUsForm($data)
