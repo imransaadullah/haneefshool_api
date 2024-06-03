@@ -284,10 +284,10 @@ class Models
     {
         return [
             'contactus'=> $this->createContactUsTable(),
-            'hmcReg'=> $this->createHMCTable(),
-            'hmjReg'=> $this->createHMJTable(),
-            'hhsReg'=> $this->createHHSTable(),
-            'hajReg'=> $this->createHAJTable()
+            // 'hmcReg'=> $this->createHMCTable(),
+            // 'hmjReg'=> $this->createHMJTable(),
+            // 'hhsReg'=> $this->createHHSTable(),
+            // 'hajReg'=> $this->createHAJTable()
         ];
     }
 }
