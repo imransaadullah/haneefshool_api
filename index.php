@@ -1,4 +1,5 @@
 <?php
+error_reporting(1);
 
 require './vendor/autoload.php';
 
@@ -8,6 +9,16 @@ use FASTAPI\App;
 use FASTAPI\Response;
 use API\Routes;
 use FASTAPI\CustomTime\CustomTime;
+
+function errorHandler ($errNo, $errStr, $errFile, $errLine) {
+    $time = (new CustomTime())->get_date('l jS \o\f F Y h:i:s A');
+    $ipAddress = $_SERVER['REMOTE_ADDR'];
+    $message = "[$time] - $ipAddress - " . implode('/', array_keys($_GET)) . " - " . $_SERVER['REQUEST_METHOD'] . ": [$errNo], $errLine, $errStr, $errFile \n";
+    error_log($message, 3, 'error_log');
+}
+
+set_error_handler('errorHandler');
+
 
 // Load Environmental Variables
 $env = Dotenv::createImmutable(__DIR__);
